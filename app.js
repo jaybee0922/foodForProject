@@ -5,12 +5,31 @@ const modeToggle = document.querySelector(".dark-light");
 const searchToggle = document.querySelector(".searchToggle");
 const sidebarOpen = document.querySelector(".sidebarOpen");
 const siderbarClose = document.querySelector(".siderbarClose");
+
+/*---------------testimonial variables--------*/
+const testimonials = document.querySelector(".section-testimonials");
+const review = document.querySelector(".review");
+
 let getMode = localStorage.getItem("mode");
 
+/*---------------change theme addEventListener---------*/
 if (getMode && getMode === "dark-mode") {
-  body.classList.add("dark");
+  document.body.classList.add("dark");
+
+  // Target the section with id "section-testimonials"
+  const testimonials = document.getElementById("section-testimonials");
+  if (testimonials) {
+    testimonials.classList.add("dark");
+
+    // Target the review items within the section
+    const reviewItems = testimonials.querySelectorAll(".reviewItem");
+    reviewItems.forEach((item) => {
+      item.classList.add("dark");
+    });
+  }
 }
 
+/*------------change theme local storage--------------*/
 modeToggle.addEventListener("click", () => {
   modeToggle.classList.toggle("active");
   body.classList.toggle("dark");
@@ -122,8 +141,8 @@ const showSpinner = (show) => {
 /*------------------ to be updated tomorrow------------*/
 
 const searchFood = (query, page) => {
-  const appId = "a0c3cbeb";
-  const appKey = "36cbad88ec06f8c067f394ba755ee69d";
+  const appId = "";
+  const appKey = "";
   const resultsDiv = document.getElementById("results");
 
   if (page === 1) {

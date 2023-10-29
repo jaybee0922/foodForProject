@@ -12,9 +12,9 @@
 /* ===== Colours ===== */
 :root {
   --body-color: #fff;
-  --nav-color: #4070f4;
+  --nav-color: #fff;
   --side-nav: #010718;
-  --text-color: #fff;
+  --text-color: #000;
   --search-bar: #f2f2f2;
   --search-text: #010718;
 }
@@ -33,6 +33,7 @@ body.dark {
 }
 
 /*-------------navbar-----------*/
+
 nav {
   position: fixed;
   top: 0;
@@ -462,8 +463,8 @@ body.dark .search-field i {
 
 /*------------------footer------------------*/
 #main-footer {
-  background-color: #333;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   padding: 2rem 0;
   margin-top: 10rem;
 }
@@ -517,7 +518,7 @@ body.dark .search-field i {
 }
 
 .social a {
-  color: #ccc;
+  color: #333;
   margin-right: 1rem;
   text-decoration: none;
   font-size: 1.2rem;
@@ -758,4 +759,113 @@ article p:last-child {
 /*----------contact ---------*/
 #contact {
   margin-top: 5rem;
+}
+
+.text-black {
+  color: #000;
+}
+
+.content {
+  padding: 7rem 0;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.form-control {
+  border: none;
+  background: #f3f3f3;
+}
+.form-control:active,
+.form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #000;
+  background: #f3f3f3;
+}
+
+.col-form-label {
+  color: #000;
+}
+
+.btn,
+.form-control,
+.custom-select {
+  height: 50px;
+}
+
+.custom-select:active,
+.custom-select:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #000;
+}
+
+.btn {
+  border: none;
+  border-radius: 4px !important;
+}
+.btn.btn-primary {
+  background: #000;
+  color: #fff;
+  padding: 15px 20px;
+}
+.btn:hover {
+  color: #fff;
+}
+.btn:active,
+.btn:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.box {
+  padding: 40px;
+  background: #fff;
+  -webkit-box-shadow: -30px 30px 0px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: -30px 30px 0px 0 rgba(0, 0, 0, 0.08);
+}
+.box h3 {
+  font-size: 14px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+label.error {
+  font-size: 12px;
+  color: red;
+}
+
+#message {
+  resize: vertical;
+}
+
+#form-message-warning,
+#form-message-success {
+  display: none;
+}
+
+#form-message-warning {
+  color: #b90b0b;
+}
+
+#form-message-success {
+  color: #55a44e;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.submitting {
+  float: left;
+  width: 100%;
+  padding: 10px 0;
+  display: none;
+  font-weight: bold;
+  font-size: 12px;
+  color: #000;
 }
