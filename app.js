@@ -1,61 +1,41 @@
-/*---------------------toggle dark and light mode-------------------*/
-const body = document.querySelector("body");
-const nav = document.querySelector("nav");
-const modeToggle = document.querySelector(".dark-light");
-const searchToggle = document.querySelector(".searchToggle");
-const sidebarOpen = document.querySelector(".sidebarOpen");
-const siderbarClose = document.querySelector(".siderbarClose");
-
-/*---------------testimonial variables--------*/
-const testimonials = document.querySelector(".section-testimonials");
-const review = document.querySelector(".review");
-
+const body = document.querySelector("body"),
+  nav = document.querySelector("nav"),
+  modeToggle = document.querySelector(".dark-light"),
+  searchToggle = document.querySelector(".searchToggle"),
+  sidebarOpen = document.querySelector(".sidebarOpen"),
+  siderbarClose = document.querySelector(".siderbarClose");
 let getMode = localStorage.getItem("mode");
 
-/*---------------change theme addEventListener---------*/
 if (getMode && getMode === "dark-mode") {
-  document.body.classList.add("dark");
+  body.classList.add("dark");
 
-  // Target the section with id "section-testimonials"
-  const testimonials = document.getElementById("section-testimonials");
-  if (testimonials) {
-    testimonials.classList.add("dark");
-
-    // Target the review items within the section
-    const reviewItems = testimonials.querySelectorAll(".reviewItem");
-    reviewItems.forEach((item) => {
-      item.classList.add("dark");
-    });
+  // Target the specified footer element with id "main-footer"
+  const mainFooter = document.querySelector("#main-footer");
+  if (mainFooter) {
+    mainFooter.style.backgroundColor = "#333"; // Change background color to dark gray
   }
 }
 
-/*------------change theme local storage--------------*/
+// js code to toggle dark and light mode
 modeToggle.addEventListener("click", () => {
   modeToggle.classList.toggle("active");
   body.classList.toggle("dark");
 
   if (!body.classList.contains("dark")) {
     localStorage.setItem("mode", "light-mode");
+    // Change the footer background color for light mode
+    const mainFooter = document.querySelector("#main-footer");
+
+    if (mainFooter) {
+      mainFooter.style.backgroundColor = "#fff"; // Change background color to white
+    }
   } else {
     localStorage.setItem("mode", "dark-mode");
-  }
-});
-
-searchToggle.addEventListener("click", () => {
-  searchToggle.classList.toggle("active");
-});
-
-sidebarOpen.addEventListener("click", () => {
-  nav.classList.add("active");
-});
-
-body.addEventListener("click", (e) => {
-  let clickedElm = e.target;
-  if (
-    !clickedElm.classList.contains("sidebarOpen") &&
-    !clickedElm.classList.contains("menu")
-  ) {
-    nav.classList.remove("active");
+    // Change the footer background color for dark mode
+    const mainFooter = document.querySelector("#main-footer");
+    if (mainFooter) {
+      mainFooter.style.backgroundColor = "#333"; // Change background color to dark gray
+    }
   }
 });
 
@@ -78,7 +58,7 @@ const animationCalender = () => {
 setInterval(animationCalender, 2000);
 
 /*-------------navlink menu animation bouncing--------*/
-const menu = document.getElementById("menu");
+const menu = document.querySelector("#menu");
 
 const animationMenu = () => {
   menu.classList.add("blink");
@@ -101,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (searchButton) {
       searchButton.addEventListener("click", function () {
         page = 1; // Reset page
-        const foodInput = document.getElementById("foodInput").value;
+        const foodInput = document.querySelector("#foodInput").value;
         searchFood(foodInput, page);
         loadMoreButton.style.display = "block";
       });
@@ -111,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (loadMoreButton) {
       loadMoreButton.addEventListener("click", function () {
-        const foodInput = document.getElementById("foodInput").value;
+        const foodInput = document.querySelector("#foodInput").value;
         showSpinner(true); // Show the spinner when clicking "Load More"
         setTimeout(function () {
           page++;
@@ -129,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /*-----------spinner------------*/
 const showSpinner = (show) => {
-  const spinner = document.getElementById("spinner");
+  const spinner = document.querySelector("#spinner");
   if (show) {
     spinner.style.display = "block";
   } else {
@@ -166,7 +146,6 @@ const searchFood = (query, page) => {
         const foodImage = foodItem.image;
         const foodLabel = foodItem.label;
         const foodDescription = foodItem.source;
-        const foodRecipeURL = foodItem.url;
 
         const foodCard = document.createElement("div");
         foodCard.className = "food-card";

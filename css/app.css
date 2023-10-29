@@ -171,7 +171,7 @@ nav .nav-bar .logo a {
   pointer-events: none;
 }
 
-.searchBox {
+/* .searchBox {
   position: relative;
 }
 
@@ -237,7 +237,7 @@ body.dark .search-field input {
 
 body.dark .search-field i {
   color: var(--text-color);
-}
+} */
 
 /*------------navbar responsive ---------*/
 
