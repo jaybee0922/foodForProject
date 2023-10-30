@@ -1,181 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-
-    <!----------slide show bootstrap----------->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-      crossorigin="anonymous"
-    />
-
-    <!--------------icon for stars-------------->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
-    />
-
-    <!---------Boxicons CSS ------------>
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-
-    <!-----------my css-->
-    <link
-      rel="stylesheet"
-      href="./css/app.css"
-    />
-    <title>Kusina La Pinas | Home</title>
-  </head>
-  <body>
-    <nav>
-      <div class="nav-bar">
-        <i class="bx bx-menu sidebarOpen"></i>
-        <a
-          href="#"
-          class="logo-image"
-        >
-          <img
-            src="./images/home images/logo.png"
-            alt="image before responsive"
-          />
-        </a>
-        <div class="menu">
-          <div class="logo-toggle">
-            <span class="logo">
-              <a href="#">
-                <img
-                  src="./images/home images/logo.png"
-                  alt="image for responsive"
-                />
-              </a>
-            </span>
-            <i class="bx bx-x siderbarClose"></i>
-          </div>
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li>
-              <a
-                href="menu.html"
-                id="menu"
-                >Menus</a
-              >
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="about.html">About</a></li>
-          </ul>
-        </div>
-        <div class="darkLight-searchBox">
-          <div class="dark-light">
-            <i class="bx bx-moon moon"></i>
-            <i class="bx bx-sun sun"></i>
-          </div>
-          <div class="searchBox">
-            <div class="searchToggle"></div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <!------------slide show------------>
-    <section
-      id="learn"
-      class="p-5 text-dark mt-5"
+    <!-----------slideShow---------------->
+    <div
+      id="carouselExampleCaptions"
+      class="carousel slide"
     >
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6 p-5">
-            <h2>Kusina La Pinas</h2>
-            <p class="lead">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Similique deleniti possimus magnam corporis ratione facere!
-            </p>
-            <div class="search-bar">
-              <input
-                type="text"
-                placeholder="Search"
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="slideshow">
-              <img
-                src="./images/slider-01.jpg"
-                alt="Slide 1"
-                class="slide-image"
-              />
-              <img
-                src="./images/slider-02.jpg"
-                alt="Slide 2"
-                class="slide-image"
-              />
-              <img
-                src="./images/slider-03.jpg"
-                alt="Slide 3"
-                class="slide-image"
-              />
-            </div>
-          </div>
-        </div>
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
       </div>
-    </section>
-    <!-- <section
-      id="slider"
-      class="carousel slide carousel-fade"
-      data-bs-ride="carousel"
-      data-bs-touch="true"
-    >
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img
-            class="d-block w-100"
             src="./images/slider-01.jpg"
-            alt="first picture"
+            class="d-block w-100"
+            alt="..."
           />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
+          </div>
         </div>
         <div class="carousel-item">
           <img
-            class="d-block w-100"
             src="./images/slider-02.jpg"
-            alt="second picture"
+            class="d-block w-100"
+            alt="..."
           />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>Some representative placeholder content for the second slide.</p>
+          </div>
         </div>
         <div class="carousel-item">
           <img
-            class="d-block w-100"
             src="./images/slider-03.jpg"
-            alt="third picture"
+            class="d-block w-100"
+            alt="..."
           />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>Some representative placeholder content for the third slide.</p>
+          </div>
         </div>
       </div>
-
       <button
         class="carousel-control-prev"
         type="button"
-        data-bs-target="#slider"
+        data-bs-target="#carouselExampleCaptions"
         data-bs-slide="prev"
       >
-        <span class="carousel-control-prev-icon"></span>
+        <span
+          class="carousel-control-prev-icon"
+          aria-hidden="true"
+        ></span>
+        <span class="visually-hidden">Previous</span>
       </button>
-
       <button
         class="carousel-control-next"
         type="button"
-        data-bs-target="#slider"
+        data-bs-target="#carouselExampleCaptions"
         data-bs-slide="next"
       >
-        <span class="carousel-control-next-icon"></span>
+        <span
+          class="carousel-control-next-icon"
+          aria-hidden="true"
+        ></span>
+        <span class="visually-hidden">Next</span>
       </button>
-    </section> -->
+    </div>
 
-    <!-- first section  of left image-->
+    <!-- first section  -->
     <section
       id="learn"
       class="p-5"
@@ -211,7 +122,7 @@
       </div>
     </section>
 
-    <!-- second Section of right image-->
+    <!-- second Section -->
     <section
       id="learn"
       class="p-5 text-dark"
@@ -247,7 +158,6 @@
       </div>
     </section>
 
-    <!------------8 images-------->
     <section
       id="cases"
       class="cases flex-grid section-padding"
@@ -266,7 +176,7 @@
             href="./images/slider-01.jpg"
             data-lightbox="cases"
             data-title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, sequi!
-        "
+          "
           >
             <img
               src="./images/slider-01.jpg"
@@ -276,7 +186,7 @@
             href="./images/slider-01.jpg"
             data-lightbox="cases"
             data-title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, sequi!
-        "
+          "
             ><img
               src="./images/slider-01.jpg"
               alt="gallery 2"
@@ -288,7 +198,7 @@
             href="./images/slider-01.jpg"
             data-lightbox="cases"
             data-title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, sequi!
-        "
+          "
             ><img
               src="./images/slider-01.jpg"
               alt="gallery 3"
@@ -298,7 +208,7 @@
             href="./images/slider-01.jpg"
             data-lightbox="cases"
             data-title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, sequi!
-        "
+          "
           >
             <img
               src="./images/slider-01.jpg"
@@ -310,7 +220,7 @@
             href="./images/slider-01.jpg"
             data-lightbox="cases"
             data-title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, sequi!
-        "
+          "
           >
             <img
               src="./images/slider-01.jpg"
@@ -321,7 +231,7 @@
             href="./images/slider-01.jpg"
             data-lightbox="cases"
             data-title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, sequi!
-        "
+          "
           >
             <img
               src="./images/slider-01.jpg"
@@ -333,7 +243,7 @@
             href="./images/slider-01.jpg"
             data-lightbox="cases"
             data-title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, sequi!
-        "
+          "
           >
             <img
               src="./images/slider-01.jpg"
@@ -343,7 +253,7 @@
             href="./images/slider-01.jpg"
             data-lightbox="cases"
             data-title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, sequi!
-        "
+          "
           >
             <img
               src="./images/slider-01.jpg"
@@ -353,7 +263,7 @@
       </div>
     </section>
 
-    <!-------------testimonials of 3 images-------------->
+    <!-------------testimonials-------------->
     <section id="section-testimonials">
       <div class="section-testimonials">
         <div class="header-testimonials">
@@ -490,11 +400,4 @@
         </div>
       </div>
     </footer>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"
-    ></script>
-    <script src="app.js"></script>
-  </body>
-</html>
+    <!-------------end of footer-------------->
