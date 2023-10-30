@@ -1,0 +1,75 @@
+   <section
+      id="about"
+      class="p-5 bg-light"
+    >
+      <div class="container">
+        <h2 class="text-center mb-3">Development Team</h2>
+        <div class="development-paragraph">
+          <p>
+            We are a team of highly skilled developers who are passionate about
+            creating innovative solutions. Our expertise spans a wide range of
+            programming languages and technologies, allowing us to tackle
+            complex projects with confidence and precision. With years of
+            experience under our belts, we have honed our abilities to deliver
+            high-quality software, websites, and applications that not only meet
+            but exceed our clients' expectations.
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img
+                src="./images/about-images/first.jpg"
+                alt="Image 1"
+                class="card-img-top"
+                width="600"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Cristel</h5>
+                <p class="card-text">FRONT END DEVELOPER</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img
+                src="./images/about-images/second.jpg"
+                alt="Image 2"
+                class="card-img-top"
+                width="600"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Jc</h5>
+                <p class="card-text">UI IX DESIGNER</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img
+                src="./images/about-images/third.png"
+                alt="Image 3"
+                class="card-img-top"
+                width="600"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Geoffrey</h5>
+                <p class="card-text">FULL STACK DEVELOPER</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="community">
+          <p>
+            Didn't Join Yet?<br />
+            Let's create nutritious and healthy recipes together for our
+            community.
+          </p>
+          <a
+            href="#"
+            class="btn btn-success"
+            >Join Our Community</a
+          >
+        </div>
+      </div>
+    </section>

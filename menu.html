@@ -32,44 +32,54 @@
       rel="stylesheet"
       href="./css/app.css"
     />
-    <title>usina La Pinas | Menu</title>
+
+    <!-------------favicon----------->
+    <link
+      rel="shortcut icon"
+      href="./images/home-images/logo.png"
+      type="image/x-icon"
+    />
+    <title>Kusina La Pinas | Menu</title>
   </head>
   <body>
     <nav>
       <div class="nav-bar">
         <i class="bx bx-menu sidebarOpen"></i>
-        <a
-          href="#"
-          class="logo-image"
-        >
-          <img
-            src="./images/home images/logo.png"
-            alt="image before responsive"
-          />
-        </a>
+        <span class="logo navLogo"><a href="#">Kusina </a></span>
         <div class="menu">
           <div class="logo-toggle">
-            <span class="logo">
-              <a href="#">
-                <img
-                  src="./images/home images/logo.png"
-                  alt="image for responsive"
-                />
-              </a>
-            </span>
+            <span class="logo"><a href="#">Kusina </a></span>
             <i class="bx bx-x siderbarClose"></i>
           </div>
           <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li>
+              <a
+                href="index.html"
+                id="home"
+                >Home</a
+              >
+            </li>
             <li>
               <a
                 href="menu.html"
                 id="menu"
-                >Menus</a
+                >Menu</a
               >
             </li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="about.html">About</a></li>
+            <li>
+              <a
+                href="contact.html"
+                id="contact"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a
+                href="about.html"
+                id="about"
+                >About</a
+              >
+            </li>
           </ul>
         </div>
         <div class="darkLight-searchBox">
@@ -86,6 +96,36 @@
 
     <!--------------searching food api-------------->
     <!-------------- mamaya ko ibibigay------------->
+    <div
+      class="search-menu"
+      style="margin-top: 100px"
+    >
+      <input
+        type="text"
+        id="foodInput"
+        placeholder="Enter a food name"
+      />
+      <button id="searchButton">Search</button>
+    </div>
+    <div
+      id="results"
+      class="results-container"
+    ></div>
+    <div
+      id="loadMoreContainer"
+      class="load-more-container"
+    >
+      <button
+        id="loadMoreButton"
+        style="display: none"
+      >
+        Load More
+      </button>
+      <div
+        id="spinner"
+        class="spinner"
+      ></div>
+    </div>
 
     <!-------------footer-------------->
     <footer id="main-footer">
@@ -140,5 +180,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="app.js"></script>
+    <script src="menu.js"></script>
   </body>
 </html>

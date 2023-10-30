@@ -9,10 +9,11 @@
   transition: all 0.4s ease;
 }
 
+/*------------navbar-----------*/
 /* ===== Colours ===== */
 :root {
   --body-color: #fff;
-  --nav-color: #4070f4;
+  --nav-color: #ff6700;
   --side-nav: #010718;
   --text-color: #fff;
   --search-bar: #f2f2f2;
@@ -221,27 +222,6 @@ nav .nav-bar .logo a {
     display: block;
     margin-top: 20px;
   }
-
-  /*-------------image logo before responsive */
-
-  .logo img {
-    display: flex;
-    width: 40%;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    margin: 0 auto;
-  }
-}
-
-/* override image */
-/* Style the image within the logo-image class */
-.logo-image img {
-  width: 100px;
-  height: 50px;
-  display: block;
-  margin: 0 auto;
-  border-radius: 20px;
 }
 
 /*-------------slide image-----------*/
@@ -703,77 +683,184 @@ label.error {
   color: #000;
 }
 
-/*----------------about us page------------*/
+/*-----------------about us page-------------*/
 
 #about {
   margin-top: 5rem;
-  margin-bottom: -100px;
 }
 
-.card {
-  margin-bottom: 20px;
-}
-
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
-}
-
-.card-title {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.card-text {
-  font-size: 16px;
-}
-
-.join-community {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.join-community p {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.community {
+.about h1 {
   display: flex;
   justify-content: center;
+  align-content: center;
   align-items: center;
-  flex-direction: column;
+}
+
+.about p {
+  text-align: center;
+  width: 50%;
   margin: 0 auto;
 }
 
-.community p {
+.developers .developer-title {
   text-align: center;
 }
 
-.btn-success {
-  padding: 13px;
+.developers {
+  display: flex;
+  justify-content: center;
+}
+
+.developers img {
+  width: 400px;
+  padding: 50px;
+  border-radius: 70px;
+}
+
+/*------------cards animation-------------*/
+.card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
 }
 
 .card img {
-  padding: 20px;
-  height: 300px;
-  border-radius: 50px;
-  object-fit: cover;
-}
-
-#about h2 {
-  margin: 0 auto;
-}
-
-.development-paragraph p {
-  text-align: center;
-}
-
-/*----------------about us animation----------*/
-.card-img-top {
   transition: transform 0.3s ease;
 }
 
-.card:hover .card-img-top {
+.card:hover img {
   transform: scale(1.1);
+}
+
+/*-------------cards responsive-------------*/
+@media (max-width: 768px) {
+  .developers {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    margin: 10px auto;
+  }
+}
+
+/*-------------community---------------*/
+
+.community {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.community .btn {
+  background-color: #0d6efd;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.community h4 {
+  margin-top: 2rem;
+  font-size: 20px;
+}
+
+/*------------------change language------------*/
+
+/*--------------search food-------------*/
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.food-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.food-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.food-recipe {
+  margin-top: 10px;
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  position: relative; /* Make the container a reference for the absolute positioning of the spinner */
+}
+
+.search-menu {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.search-menu button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  border: 1px solid #333;
+  margin-left: 5px;
+}
+
+.search-menu input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  border: 1px solid #333;
+}
+
+.food-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+  text-align: center;
+  opacity: 0; /* Initially set opacity to 0 */
+  transition: opacity 0.3s; /* Add a transition for opacity */
+}
+
+.food-card.show {
+  opacity: 1; /* Change opacity to 1 when the "show" class is applied */
+  transition: all 3s;
+  transition-delay: 0.3s;
+  margin-top: 2rem;
+}
+
+/* Add these CSS styles for the spinner and animation */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: -30px; /* Position above the "Load More" button */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
