@@ -1,0 +1,89 @@
+/*-------------------------search food-------------*/
+let page = 1;
+const resultsPerPage = 4; // Number of results to display per page
+
+const showSpinner = (show) => {
+  document.querySelector("#spinner").style.display = show
+    ? "inline-block"
+    : "none";
+};
+
+const searchButton = () => {
+  document
+    .querySelector("#searchButton")
+    .addEventListener("click", function () {
+      page = 1;
+      const foodInput = document.querySelector("#foodInput").value;
+      searchFood(foodInput, page);
+      document.querySelector("#loadMoreButton").style.display = "block";
+    });
+};
+
+const apiCredentials = {
+  appId: "a0c3cbeb",
+  appKey: "36cbad88ec06f8c067f394ba755ee69d",
+};
+
+const searchFood = async (query, page) => {
+  const resultsDiv = document.querySelector("#results");
+
+  if (page === 1) resultsDiv.innerHTML = "";
+
+  const from = (page - 1) * resultsPerPage;
+  const to = page * resultsPerPage;
+
+  try {
+    const { appId, appKey } = apiCredentials;
+    const response = await fetch(
+      `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}&from=${from}&to=${to}`
+    );
+    const data = await response.json();
+    const hits = data.hits;
+
+    const fragment = document.createDocumentFragment();
+    hits.forEach((hit) => {
+      const { image, label, source, recipe } = hit.recipe;
+
+      const foodCard = document.createElement("div");
+      foodCard.className = "food-card";
+      foodCard.classList.add("show");
+
+      const imageElement = document.createElement("img");
+      imageElement.className = "food-image";
+      imageElement.src = image;
+
+      const titleElement = document.createElement("h2");
+      titleElement.innerText = label;
+
+      const descriptionElement = document.createElement("p");
+      descriptionElement.innerText = source;
+
+      foodCard.append(imageElement, titleElement, descriptionElement);
+      fragment.appendChild(foodCard);
+    });
+    resultsDiv.appendChild(fragment);
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+  }
+};
+
+const loadMoreButton = () => {
+  const button = document.querySelector("#loadMoreButton");
+  button.addEventListener("click", handleClick);
+
+  function handleClick() {
+    const foodInput = document.querySelector("#foodInput").value;
+    showSpinner(true);
+    setTimeout(loadMore, 1000);
+
+    function loadMore() {
+      page++;
+      searchFood(foodInput, page);
+      showSpinner(false);
+    }
+  }
+};
+
+/*---------------invoke function-------------*/
+searchButton();
+loadMoreButton();

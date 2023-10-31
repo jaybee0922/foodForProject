@@ -1,88 +1,94 @@
-/*-------------------------search food-------------*/
+const credentials = {
+  appId: "a0c3cbeb",
+  appKey: "36cbad88ec06f8c067f394ba755ee69d",
+};
+
 let page = 1;
-const resultsPerPage = 4; // Number of results to display per page
 
-document.getElementById("searchButton").addEventListener("click", function () {
-  page = 1; // Reset page when a new search is performed
-  const foodInput = document.getElementById("foodInput").value;
-  searchFood(foodInput, page);
-  document.getElementById("loadMoreButton").style.display = "block";
-});
-
-document
-  .getElementById("loadMoreButton")
-  .addEventListener("click", function () {
-    const foodInput = document.getElementById("foodInput").value;
-    showSpinner(true); // Show the spinner when clicking "Load More"
-    setTimeout(() => {
-      page++;
-      searchFood(foodInput, page);
-      showSpinner(false); // Hide the spinner after 1 second
-    }, 1000);
-  });
-
-function showSpinner(show) {
-  const spinner = document.getElementById("spinner");
-  if (show) {
-    spinner.style.display = "inline-block";
-  } else {
+const showSpinner = (show) => {
+  const spinner = document.querySelector("#spinner");
+  if (show) spinner.style.display = "inline-block";
+  else {
     spinner.style.display = "none";
   }
-}
+};
 
-function searchFood(query, page) {
-  const appId = "a0c3cbeb";
-  const appKey = "36cbad88ec06f8c067f394ba755ee69d";
-  const resultsDiv = document.getElementById("results");
+const searchFood = async (query, page) => {
+  const myFirst = credentials.appId;
+  const mySecond = credentials.appKey;
+
+  const resultsDiv = document.querySelector("#results");
+  const resultsPerPage = 4;
 
   if (page === 1) {
-    resultsDiv.innerHTML = ""; // Clear previous results only when it's the first page
+    resultsDiv.innerHTML = "";
   }
 
-  // Calculate the from and to parameters for pagination
   const from = (page - 1) * resultsPerPage;
   const to = page * resultsPerPage;
 
-  // Include the 'query', 'from', and 'to' in your API request to search for the specified food and paginate results
-  fetch(
-    `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}&from=${from}&to=${to}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const hits = data.hits;
+  history.pushState({}, "", `?q=${query}&page=${page}`);
+  const url = `https://api.edamam.com/search?q=${query}&app_id=${myFirst}&app_key=${mySecond}&from=${from}&to=${to}`;
 
-      hits.forEach((hit) => {
-        const foodItem = hit.recipe;
-        const foodImage = foodItem.image;
-        const foodLabel = foodItem.label;
-        const foodDescription = foodItem.source;
-        const foodRecipeURL = foodItem.url;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const hits = data.hits;
 
-        // Create a food card to display image, title, and description
-        const foodCard = document.createElement("div");
-        foodCard.className = "food-card";
-        foodCard.classList.add("show"); // Apply the "show" class to trigger the animation
+    hits.forEach((hit) => {
+      const { recipe } = hit;
+      const { image, label, source } = recipe;
 
-        const imageElement = document.createElement("img");
-        imageElement.className = "food-image";
-        imageElement.src = foodImage;
+      const foodCard = document.createElement("div");
+      foodCard.className = "food-card";
+      foodCard.classList.add("show");
 
-        const titleElement = document.createElement("h2");
-        titleElement.innerText = foodLabel;
+      const imageElement = document.createElement("img");
+      imageElement.className = "food-image";
+      imageElement.src = image;
 
-        const descriptionElement = document.createElement("p");
-        descriptionElement.innerText = foodDescription;
+      const titleElement = document.createElement("h5");
+      titleElement.innerText = label;
 
-        // Append image, title, and description to the food card
-        foodCard.appendChild(imageElement);
-        foodCard.appendChild(titleElement);
-        foodCard.appendChild(descriptionElement);
+      const descriptionElement = document.createElement("h6");
+      descriptionElement.innerText = source;
 
-        // Append the food card to the results div
-        resultsDiv.appendChild(foodCard);
-      });
-    })
-    .catch((error) => {
-      console.error("Error fetching data: ", error);
+      foodCard.appendChild(imageElement);
+      foodCard.appendChild(titleElement);
+      foodCard.appendChild(descriptionElement);
+
+      resultsDiv.appendChild(foodCard);
     });
-}
+  } catch (error) {
+    console.error("Error fetching data: ", error);
+  }
+};
+
+const searchButton = () => {
+  document
+    .querySelector("#searchButton")
+    .addEventListener("click", function () {
+      page = 1;
+      const foodInput = document.querySelector("#foodInput").value;
+      searchFood(foodInput, page);
+      document.querySelector("#loadMoreButton").style.display = "block";
+    });
+};
+
+const loadMoreButton = () => {
+  document
+    .querySelector("#loadMoreButton")
+    .addEventListener("click", function () {
+      const foodInput = document.querySelector("#foodInput").value;
+      showSpinner(true); // Show the spinner when clicking "Load More"
+      setTimeout(() => {
+        page++;
+        searchFood(foodInput, page);
+        showSpinner(false); // Hide the spinner after 1 second
+      }, 1000);
+    });
+};
+
+/*---------------invoke function-------------*/
+searchButton();
+loadMoreButton();

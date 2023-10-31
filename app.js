@@ -21,8 +21,11 @@ if (getMode && getMode === "dark-mode") {
 
 // js code to toggle dark and light mode
 modeToggle.addEventListener("click", () => {
+  const language = document.querySelector("#language");
   modeToggle.classList.toggle("active");
   body.classList.toggle("dark");
+  language.classList.add("language");
+
   // js code to keep user selected mode even page refresh or file reopen
   if (!body.classList.contains("dark")) {
     localStorage.setItem("mode", "light-mode");
@@ -30,6 +33,7 @@ modeToggle.addEventListener("click", () => {
     localStorage.setItem("mode", "dark-mode");
   }
 });
+
 // js code to toggle search box
 searchToggle.addEventListener("click", () => {
   searchToggle.classList.toggle("active");
@@ -52,21 +56,18 @@ body.addEventListener("click", (e) => {
 /*----------------image slide show--------------*/
 
 const slideShow = () => {
-  slides.forEach((slide, index) => {
-    if (index === currentSlide) {
-      slide.classList.add("active");
-    } else {
-      slide.classList.remove("active");
-    }
+  let len = slides.length;
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === currentSlide);
   });
-  currentSlide = (currentSlide + 1) % slides.length;
+  currentSlide = (currentSlide + 1) % len;
 };
 
-setInterval(slideShow, 3000); // Change slide every 3 seconds
+setInterval(slideShow, 3000);
 
 /*-------------navlink menu animation bouncing--------*/
 const animationMenu = () => {
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     menu.classList.add("blink");
   });
 };
@@ -74,60 +75,42 @@ const animationMenu = () => {
 setInterval(animationMenu, 1000);
 
 /*----------------language translate---------------*/
-// document.addEventListener("DOMContentLoaded", function () {
-//   translateText(); // Translate on page load
-// });
+document.addEventListener("DOMContentLoaded", function () {
+  translateText(); // Translate on page load
+});
 
-// // Automatically translate when language is changed
-// document.getElementById("language").addEventListener("change", function () {
-//   translateText();
-// });
+// Automatically translate when language is changed
+document.getElementById("language").addEventListener("change", function () {
+  translateText();
+});
 
-// function translateText() {
-//   const selectedLanguage = document.getElementById("language").value;
+async function translateText() {
+  const selectedLanguage = document.getElementById("language").value;
+  const elementsToTranslate = [
+    { id: "home", text: "Home" },
+    { id: "menu", text: "Menu" },
+    { id: "contact", text: "Contact" },
+    { id: "About", text: "About" },
+  ];
 
-//   // Array of elements to translate
-//   const elementsToTranslate = [
-//     { id: "home", text: "Home" },
-//     { id: "menu", text: "Menu" },
-//     { id: "about", text: "About Us" },
-//     { id: "contact", text: "Contact Us" },
-//     { id: "kusina-pinas", text: "Kusina La Pinas" },
-//     {
-//       id: "lead",
-//       text: " We are a team of highly skilled developers who are passionate about creating innovative solutions. Our expertise spans a wide range of programming languages and technologies, allowing us to tackle complex projects with confidence and precision. With years of experience under our belts, we have honed our abilities to deliver high-quality software, websites, and applications that not only meet but exceed our clients' expectations.",
-//     },
-//     {
-//       id: "pageContent",
-//       text: "Welcome to our website. Feel free to explore and learn more about us.",
-//     },
-//   ];
-
-//   elementsToTranslate.forEach((element) => {
-//     const elementNode = document.getElementById(element.id);
-//     if (elementNode) {
-//       // Check if the selected language is different from the current language
-//       if (selectedLanguage !== "en") {
-//         // Replace spaces with '%20' for URL encoding
-//         const encodedText = encodeURIComponent(element.text);
-
-//         // Construct the API URL with target language code
-//         const apiUrl = `https://api.mymemory.translated.net/get?q=${encodedText}&langpair=en|${selectedLanguage}`;
-
-//         fetch(apiUrl)
-//           .then((response) => response.json())
-//           .then((data) => {
-//             if (data.responseData && data.responseData.translatedText) {
-//               elementNode.textContent = data.responseData.translatedText;
-//             }
-//           })
-//           .catch((error) => {
-//             console.error("Error:", error);
-//           });
-//       } else {
-//         // If the selected language is English, no need to make a translation request
-//         elementNode.textContent = element.text;
-//       }
-//     }
-//   });
-// }
+  for (const element of elementsToTranslate) {
+    const elementNode = document.getElementById(element.id);
+    if (elementNode) {
+      if (selectedLanguage !== "en") {
+        const encodedText = encodeURIComponent(element.text);
+        const apiUrl = `https://api.mymemory.translated.net/get?q=${encodedText}&langpair=en|${selectedLanguage}`;
+        try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+          if (data.responseData && data.responseData.translatedText) {
+            elementNode.textContent = data.responseData.translatedText;
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      } else {
+        elementNode.textContent = element.text;
+      }
+    }
+  }
+}
